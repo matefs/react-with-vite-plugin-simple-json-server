@@ -7,14 +7,18 @@ import './App.css';
 
 function App() {
   const [count, setCount] = useState(0);
-  fetch('/api/products')
+  const [itemsFromDatabase, setItemsFromDatabase ] = useState()
+
+  fetch('/api/products') 
     .then((response) => response.json()) // Converte o corpo da resposta para JSON
-    .then((data) => console.log(data)) // Loga os dados convertidos
+    .then((data) => {
+      setItemsFromDatabase(data)
+    }) // Loga os dados convertidos
     .catch((error) => console.error('Erro ao obter os dados:', error)); // Trata erros
 
   return (
     <>
-      <div>asasdfasdf asdfasdfasdf</div>
+      <div>asasdfasdf asdfasdfasdf {JSON.stringify(itemsFromDatabase)}</div>
     </>
   );
 }
